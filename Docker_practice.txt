@@ -1,0 +1,266 @@
+    1  echo "" > .bash_history 
+    2  sudo nano /etc/apt/apt.conf.d/20auto-upgrades
+    3  launchpad version
+    4  vi .bashrc 
+    5  crontab -l
+    6  ps -ef
+    7  ps -ef |egrep dcv
+    8  dcv list-sessions
+    9  sudo su
+   10  crontab -l
+   11  crontab -e
+   12  exit
+   13  cat /opt/scripts/voc_start_dcv_and_ttyd_and_monitor.sh 
+   14  sudo systemctl enable:now dcvserver
+   15  sudo systemctl enable /now dcvserver
+   16  sudo systemctl enable dcvserver
+   17  sudo systemctl start dcvserver
+   18  sudo su
+   19  sudo systemctl daemon-reload
+   20  ps auwx | grep ttyd
+   21  sudo systemctl enable --now ttyd.service
+   22  ps auwx | grep ttyd
+   23  sudo vi /etc/dcv/dcv.conf 
+   24  sudo systemctl restart dcvserver
+   25  sudo docker version
+   26  sudo apt-get remove docker-ce
+   27  sudo apt-get remove docker-ce-cli
+   28  docker version
+   29  sudo apt update
+   30  sudo apt install apt-transport-https ca-certificates curl software-properties-common
+   31  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+   32  echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+   33  sudo echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+   34  sudo apt update
+   35  apt-cache policy docker-ce
+   36  sudo apt install docker-ce
+   37  docker version
+   38  sudo docker version
+   39  sudo docker ps
+   40  sudo docker run hello-world
+   41  history
+   42  apt-cache madison docker-ce | awk '{ print $3 }'
+   43  sudo hostnamectl set-hostname master
+   44  bash
+   45  docker images
+   46  sudo docker images
+   47  history
+   48  sudo docker images
+   49  suco docker ps
+   50  sudo docker ps
+   51  sudo docker start web
+   52  sudo docker ps
+   53  docker ps
+   54  sudo docker ps
+   55  docker ps
+   56  sudo docker ps
+   57  history
+   58  sudo systelctl restart docker.service
+   59  sudo systemctl restart docker.service
+   60  sudo docker ps
+   61  docker ps
+   62  sudo docker ps
+   63  docker ps
+   64  sudo docker ps
+   65  sudo systemctl status docker service
+   66  sudo systemctl restart docker.service
+   67  sudo docker ps
+   68  sudo docker version
+   69  sudo apt-get update
+   70  sudo docker pull nginx
+   71  sudo docker run --name web nginx
+   72  sudo docker run --name web -d --run nginx
+   73  sudo docker run --name web -d --rm nginx
+   74  sudo docker ps
+   75  sudo docker run web
+   76  sudo docker ps
+   77  sudo systemctl restart docker.service
+   78  sudo docker ps
+   79  sudo docker images
+   80  sudo docker run nginx
+   81  sudo docker ps
+   82  docker ps
+   83  sudo su
+   84  sudo docker ps -a
+   85  history
+   86  clear
+   87  pwd
+   88  ls -lart
+   89  mkdir temp
+   90  cd temp
+   91  sudo docker build -t py
+   92  sudo docker build -t py .
+   93  sudo docker images
+   94  ls
+   95  sudo docker build -t py.
+   96  sudo docker build -t py .
+   97  sudo docker history py
+   98  sudo docker build -t py .
+   99  sudo docker build -t py1 .
+  100  sudo docker history py
+  101  sudo docker history py1
+  102  sudo docker system df
+  103  clear
+  104  cd ..
+  105  pwd
+  106  ls -lart
+  107  mkdir git
+  108  cd git/
+  109  git clone https://github.com/vcjain/docker-learning.git
+  110  ls -lart
+  111  cd docker-learning/
+  112  ls
+  113  git status
+  114  git checkout images
+  115  git status
+  116  ls 
+  117  sudo docker build -t python_ap .
+  118  git status
+  119  ls -lart
+  120  sudo docker build -t python .
+  121  cd python/
+  122  ls
+  123  cd flask-app/
+  124  sudo docker build -t python_ap .
+  125  sudo docker images
+  126  sudo docker history python_app
+  127  sudo docker history python_ap
+  128  sudo docker run --name python_app -p 8080:8000 -d --rm python_app
+  129  sudo docker run --name python_ -p 8080:8000 -d --rm python_app
+  130  sudo docker run --name python-app -p 8080:8000 -d --rm python-app
+  131  sudo docker ps
+  132  sudo docker run --name python-app -p 8080:8000 -d --rm python1
+  133  sudo docker run --name python-app -p 8080:8000 -d --rm python-app
+  134  sudo docker rm python-app
+  135  sudo ocker ps -a
+  136  sudo docker ps -a
+  137  sudo docker build -t pythonapp .
+  138  sudo docker ps -a
+  139  sudo docker imahes
+  140  sudo docker images
+  141  sudo docker run pythonapp
+  142  history
+  143  ped
+  144  pwd
+  145  ls -lart
+  146  cd git
+  147  ls
+  148  cd docker-learning/
+  149  ls
+  150  cd python/
+  151  ls
+  152  cd flask-app/
+  153  ls
+  154  git status
+  155  gut commit -a
+  156  git commit -a "changes"
+  157  git commit
+  158  cd ..
+  159  cd ../
+  160  cd ..
+  161  sudo apt-get update
+  162  cd git/docker-learning/python/flask-app/
+  163  git branch
+  164  sudo docker build -t myos .
+  165  git branch
+  166  git checkout image-entrypoint
+  167  clear
+  168  git branch
+  169  cd ..
+  170  pwd
+  171  cd ..
+  172  git branch
+  173  sudo docker build -t myos .
+  174  sudo docker run --name myos --rm myos
+  175  sudo docker run --name myos --rm myos hello
+  176  sudo docker run --name myos --rm myos echo hello from my world
+  177  sudo docker build -t myos .
+  178  sudo docker run --name myos --rm myos
+  179  sudo docker run --name myos --rm myos hello
+  180  sudo docker run --name myos --rm myos echo hello
+  181  sudo docker build -t myos .
+  182  sudo docker run --name myos --rm myos
+  183  sudo docker run --name myos --rm myos Hello
+  184  sudo docker run --name myos --rm myos echo Hello
+  185  sudo docker build -t myos .
+  186  sudo docker run --name myos --rm myos
+  187  sudo docker run --name myos --rm myos hello
+  188  sudo docker build -t myos --label lan=python .
+  189  sudo docker images
+  190  sudo docker images --filter label=lan=python
+  191  sudo docker images
+  192  sudo docker login
+  193  sudo docker image tag py prreddy24/py:v1 
+  194  sudo docker images
+  195  sudo docker push prreddy/py:v1
+  196  sudo docker push py prreddy24/py:v1
+  197  sudo docker push prreddy24/py
+  198  sudo docker push prreddy24/v1
+  199  sudo docker push prreddy24/py:v1
+  200  history
+  201  sudo docker run -d -p 5000:5000 --name registry registry:latest
+  202  sudo docker ps
+  203  sudo docker images
+  204  sudo docker images prune
+  205  sudo docker images
+  206  sudo docker images pruner
+  207  sudo docker ps
+  208  sudo docker ps -a
+  209  sudo docker images
+  210  sudo dockerrun --name web1 -d nginx
+  211  sudo docker run --name web1 -d nginx
+  212  sudo docker images
+  213  sudo docker images rm nginx
+  214  sudo docker image rm nginx
+  215  sudo docker image rm -f nginx
+  216  sudo docker images
+  217  sudo docker ps
+  218  sudo docker stop web1
+  219  sudo docker ps
+  220  sudo docker image prune
+  221  sudo docker images
+  222  sudo docker ps -a
+  223  sudo docker rm -f web1
+  224  sudo docker image prune
+  225  sudo docker images
+  226  clear
+  227  sudo docker network ls
+  228  sudo docker network create --driver bridge my-network
+  229  sudo docker network ls
+  230  history
+  231  sudo docker run --name web -d --network my-network nginx
+  232  sudo docker inspect web
+  233  sudo docker network inspect my-network
+  234  sudo docker network create my-bridge1
+  235  sudo docker network ls
+  236  sudo docker network rm my-network
+  237  sudo docker ps
+  238  sudo docker stop nginx
+  239  sudo docker stop web
+  240  sudo docker image rm -f web
+  241  sudo docker rm -f web
+  242  sudo docker network rm ny-network
+  243  sudo docker network rm my-network
+  244  sudo docker network ls
+  245  sudo docker network create my-host
+  246  sudo docker run --name web -d --network my-host nginx
+  247  sudo docker inspect web
+  248  sudo docker ps
+  249  sudo docker stop web
+  250  sudo docker rm -f web
+  251  sudo docker ps
+  252  sudo docker ps -a
+  253  sudo docker network ls
+  254  sudo docker run --name web -d --rm nginx
+  255  sudo docker inspect web
+  256  sudo docker network connect my-net web
+  257  sudo docker network ls
+  258  sudo docker connect my-host web
+  259  sudo docker network connect my-host web
+  260  sudo docker inspect web
+  261  sudo docker network disconnect my-host web
+  262  sudo docker inspect web
+  263  sudo docker network ls
+  264  sudo docker network rm my-host
+  265  sudo docker network ls
+  266  history

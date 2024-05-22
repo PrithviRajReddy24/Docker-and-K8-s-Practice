@@ -1,0 +1,244 @@
+wget https://github.com/tsl0922/ttyd/releases/download/1.7.3/ttyd.i686
+    2  chmod +x ./ttyd.i686
+    3  sudo mv ttyd.i686 /usr/local/bin/ttyd
+    4  sudo su
+    5  sudo systemctl daemon-reload
+    6  sudo systemctl enable --now ttyd.service
+    7  whoami
+    8  ps auwx | grep ssm
+    9  sudo apt update
+   10  sudo apt upgrade -y
+   11  ps auwx | grep 8826
+   12  sudo strace -p 826
+   13  sudo strace -p 8826
+   14  sudo apt upgrade -y
+   15  sudo kill 8826
+   16  sudo apt upgrade -y
+   17  sudo dpkg --configure -a
+   18  sudo reboot
+   19  sudo gedit /etc/default/apport &
+   20  sudo vi /etc/default/apport
+   21  sudo reboot
+   22  uname -a
+   23  lsb_release
+   24  lsb_release /a
+   25  lsb_release -a
+   26  sudo apt install -y docker.io
+   27  sudo docker version
+   28  sudo systemctl start docker
+   29  sudo systemctl enable docker
+   30  sudo systemctl status docker
+   31  sudo apt install -y kubeadm kubelet kubectl
+   32  curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+   33  echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+   34  sudo apt-get update
+   35  sudo apt-get install -y kubectl
+   36  kubectl
+   37  kubectl version
+   38  clear
+   39  kubectl version
+   40  sudo apt install -y kubeadm kubelet
+   41  kubectl version
+   42  cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
+   43  overlay
+   44  br_netfilter
+   45  EOF
+   46  sudo modprobe overlay
+   47  sudo modprobe br_netfilter
+   48  # sysctl params required by setup, params persist across reboots
+   49  cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+   50  net.bridge.bridge-nf-call-iptables  = 1
+   51  net.bridge.bridge-nf-call-ip6tables = 1
+   52  net.ipv4.ip_forward                 = 1
+   53  EOF
+   54  # Apply sysctl params without reboot
+   55  sudo sysctl --system
+   56  lsmod | grep br_netfilter
+   57  lsmod | grep overlay
+   58  sysctl net.bridge.bridge-nf-call-iptables net.bridge.bridge-nf-call-ip6tables net.ipv4.ip_forward
+   59  wget https://github.com/containerd/containerd/releases/download/v1.6.8/containerd-1.6.8-linux-amd64.tar.gz
+   60  sudo tar Cxzvf /usr/local containerd-1.6.8-linux-amd64.tar.gz
+   61  wget https://github.com/opencontainers/runc/releases/download/v1.1.3/runc.amd64
+   62  sudo install -m 755 runc.amd64 /usr/local/sbin/runc
+   63  which runc
+   64  wget https://github.com/containernetworking/plugins/releases/download/v1.1.1/cni-plugins-linux-amd64-v1.1.1.tgz
+   65  mkdir -p /opt/cni/bin
+   66  sudo tar Cxzvf /opt/cni/bin cni-plugins-linux-amd64-v1.1.1.tgz
+   67  sudo mkdir -p /etc/containerd/
+   68  sudo containerd config default | sudo tee /etc/containerd/config.toml
+   69  cat /etc/containerd/config.toml
+   70  sudo sed -i 's/SystemdCgroup \= false/SystemdCgroup \= true/g' /etc/containerd/config.toml
+   71  sudo curl -L https://raw.githubusercontent.com/containerd/containerd/main/containerd.service -o /etc/systemd/system/containerd.service
+   72  sudo ls /etc/systemd/system| grep container
+   73  sudo systemctl daemon-reload
+   74  sudo systemctl unmask  containerd
+   75  sudo systemctl start containerd
+   76  sudo ls /etc/systemd/system| grep container
+   77  sudo curl -L https://raw.githubusercontent.com/containerd/containerd/main/containerd.service -o /etc/systemd/system/containerd.service
+   78  sudo systemctl daemon-reload
+   79  sudo systemctl status containerd
+   80  sudo crictl config     --set runtime-endpoint=unix:///run/containerd/containerd.sock     --set image-endpoint=unix:///run/containerd/containerd.sock
+   81  sudo crictl ps
+   82  sudo hostnamectl set-hostname master.example.com
+   83  exec bash
+   84  sudo kubeadm init --ignore-preflight-errors=all
+   85  mkdir -p $HOME/.kube
+   86  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+   87  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+   88  cat ~/.kube/config
+   89  kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/calico.yaml
+   90  sudo kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/calico.yaml
+   91  kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
+   92  kubectl get nodes
+   93  clear
+   94  kubectl get nodes
+   95  sudo kubeadm reset
+   96  clear
+   97  exec
+   98  clear
+   99  sudo hostnamectl set-hostname master.example.com 
+  100  exec bash
+  101  clear
+  102  sudo kubeadm init --ignore-preflight-errors=all
+  103  sudo kubeadm reset
+  104  clear
+  105  sudo kubeadm init --ignore-preflight-errors=all
+  106  mkdir -p $HOME/.kube 
+  107  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  108  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+  109  sudo kubeadm token create --print-join-command
+  110  sudo kubeadm reset
+  111  sudo kubeadm init --ignore-preflight-errors=all
+  112  mkdir -p $HOME/.kube
+  113  sudo kubeadm token create --print-join-command
+  114  clear
+  115  sudo kubeadm token create --print-join-command
+  116  kubectl get nodes
+  117  clear
+  118  kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
+  119  kubectl get nodes
+  120  sudo kubeadm reset
+  121  sudo systemctl daemon-reload
+  122  sudo systemctl unmask  containerd
+  123  sudo systemctl start containerd
+  124  sudo kubeadm init --ignore-preflight-errors=all
+  125  mkdir -p $HOME/.kube
+  126  sudo kubeadm token create --print-join-command
+  127  kubectl get nodes
+  128  kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
+  129  kubectl get nodes
+  130  sudo kubeadm reset
+  131  sudo systemctl daemon-reload
+  132  sudo systemctl unmask  containerd
+  133  sudo systemctl start containerd
+  134  sudo kubeadm init --ignore-preflight-errors=all
+  135  mkdir -p $HOME/.kube 
+  136  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  137  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+  138  sudo kubeadm token create --print-join-command
+  139  kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
+  140  kubectl get nodes
+  141  lear
+  142  clear
+  143  kubectl get nodes
+  144  clear
+  145  kubectl get nodes
+  146  kubectl get namespaces
+  147  kubectl get nodes
+  148  kubectl create deployment myapp1 --image=docker.io/openshift/hello-openshift
+  149  kubectl get deployment
+  150  kubectl get pods
+  151  kubectl expose deployment myapp1 --port=8080
+  152  kubectl get svc
+  153  curl 10.101.186.24:8080
+  154  kubectl get nodes
+  155  kubectl get nodes -o wide
+  156  kubectl api-versions
+  157  kubeadm version
+  158  kubectl version
+  159  kubectl config view
+  160  kubectl cluster-info
+  161  kubectl get pods -n kube-system
+  162  sudo apt install -y firefox
+  163  firefox &
+  164  sudo apt autoremove
+  165  ps auwx | grep containerd
+  166  sudo apt install -y firefox
+  167  DISPAY=:1 firefox &
+  168  set DISPAY=:1 firefox &
+  169  fg
+  170  sudo snap remove firefox
+  171  sudo apt update
+  172  sudo apt install -y firefox
+  173  sudo snap remove firefox
+  174  sudo snap install firefox
+  175  set DISPAY=:1 firefox
+  176  sudo snap remove firefox
+  177  set DISPAY=:1 firefox
+  178  apt remove firefox
+  179  sudo apt remove firefox
+  180  sudo apt autoremove
+  181  echo '
+  182  Package: *
+  183  Pin: release o=LP-PPA-mozillateam
+  184  Pin-Priority: 1001
+  185  ' | sudo tee /etc/apt/preferences.d/mozilla-firefox
+  186  sudo echo '
+  187  Package: *
+  188  Pin: release o=LP-PPA-mozillateam
+  189  Pin-Priority: 1001
+  190  ' | sudo tee /etc/apt/preferences.d/mozilla-firefox
+  191  sudo apt update
+  192  sudo apt install firefox
+  193  set DISPAY=:1 firefox
+  194  sudo kubeadm init --ignore-preflight-errors=all
+  195  mkdir -p $HOME/.kube
+  196  kubectl get nodes
+  197  kubectl get namespace
+  198  kubectl get pod -n kube-system
+  199  kubectl run testpod --image=nginx
+  200  kubectl get pod
+  201  kubectl describe pod testpod
+  202  kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
+  203  kubectl get pod -n kube-system
+  204  kubectl get pod -n kube-system -m
+  205  kubectl get pod -n kube-system -w
+  206  kubectl get pod
+  207  kubectl run testpod --image=nginx --help
+  208  kubectl run testcurl --image=alpine/curl
+  209  kubectl get pod
+  210  kubectl describe pod testcurl
+  211  kubectl exec -it testpod --bash
+  212  kubectl exec -it testpod -- bash
+  213  kube get pod
+  214  kubectl get pod
+  215  kubectl delete pod testcurl
+  216  kubectl get pod
+  217  kubectl run -it testcurl --image=alpine/curl -- sh
+  218  kubectl get pod
+  219  kubectl exec -it testcurl -- sh
+  220  kubectl delete pod testcurl
+  221  kubectl get pod
+  222  kube run --rm -it testcurl --image=alpine/curl -- sh
+  223  kubectl run --rm -it testcurl --image=alpine/curl -- sh
+  224  kubectl get pod
+  225  kubectl get pod -o wide
+  226  kubectl exec -it pod/testpod -- bash
+  227  kubectl run --rm -it testcurl --image=alpine/curl -- sh
+  228  kubectl exec -it pod/testpod -- bash
+  229  kubectl get pod -o wide
+  230  kube =ctl get pod testpod
+  231  kubectl get pod testpod -o yaml
+  232  kubectl get pod testpod -o yaml > test.yaml
+  233  vi test.yaml 
+  234  kubectl get pod testpod -o json
+  235  vi test.yaml 
+  236  vi testnginx-02.yaml
+  237  kubectl create -f testnginx-02.yaml
+  238  vi testnginx-02.yaml
+  239  kubectl create -f testnginx-02.yaml
+  240  kubectl get pod
+  241  kubectl get pod --show-labels
+  242  kubectl apply -f testnginx-02.yaml
+  243  kubectl get pod --show-labels
+  244  history
